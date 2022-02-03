@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/01/29 21:01:36 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/03 14:18:09 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int			ft_pow(int x, int pow);
 void		free_split(char **v);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 void		put_sprite(t_tileset *t, int *s_coord, int *coord, t_image *img);
+void		switch_image(void *screen, t_window *w);
 
 #endif
