@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 16:48:00 by ccambium          #+#    #+#             */
-/*   Updated: 2022/01/29 21:02:21 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/05 15:14:16 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ void	put_sprite(t_tileset *t, int *s_coord, int *coord, t_image *img)
 
 	sprite = get_sprite(t, s_coord[0], s_coord[1]);
 	put_sprite_to_img(sprite, coord, t->colors, img);
-	free(sprite);
+	free_split(sprite);
 }

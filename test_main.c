@@ -9,38 +9,24 @@ int main(int ac, char **av)
 	t_image img;
 	void *screen;
 	size_t i;
-	int *coord;
-	int *coord2;
+	char **map;
+	t_player player;
 
 	screen = mlx_init();
-	window.window = mlx_new_window(screen, 500, 500, "test");
-	img.img = mlx_new_image(screen, 32, 32);
+	window.window = mlx_new_window(screen, 900, 900, "test");
+	img.img = mlx_new_image(screen, 900, 900);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
 	window.next = &img;
 	test.path = "tileset/Beach Tileset.xpm";
 	i = 0;
-	coord = malloc(sizeof(int) * 3);
-	coord2 = malloc(sizeof(int) * 3);
-	if (ac == 3)
-	{
-		coord[0] = ft_atoi(av[1]);
-		coord[1] = ft_atoi(av[2]);
-		coord[2] = 0;
-	}
-	else
-	{
-		coord[0] = 0;
-		coord[1] = 0;
-		coord[2] = 0;
-	}
-	coord2[0] = 0;
-	coord2[1] = 0;
-	coord2[2] = 0;
 	xpm_to_sprite(&test);
-	put_sprite(&test, coord, coord2, &img);
+	map = map_to_tab("maps/map1.ber");
+	map_generation(map, &test, window.next);
 	mlx_put_image_to_window(screen, window.window, window.next->img, 0, 0);
+	event_handler(screen, window.window);
 	mlx_loop(screen);
+	mlx_destroy_window(screen, window.window);
 	while (test.colors[i])
 	{
 		free(test.colors[i][0]);
@@ -52,4 +38,5 @@ int main(int ac, char **av)
 	free(test.colors[i]);
 	free(test.colors);
 	free_split(test.img);
+	free_split(map);
 }

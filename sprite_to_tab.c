@@ -42,7 +42,6 @@ static char	***get_colors(char ***colors, int fd)
 {
 	char	**rv;
 	char	*s;
-	char	*v;
 	int		x;
 
 	s = get_next_line(fd);

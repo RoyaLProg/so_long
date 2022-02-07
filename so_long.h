@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/03 14:18:09 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/07 19:08:24 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@ typedef struct s_image{
 	int		line_length;
 	int		endian;
 }	t_image;
-
-typedef struct s_sprite{
-	void	*img;
-	char	*path;
-	int		img_width;
-	int		img_height;
-}	t_sprite;
-
 typedef struct s_window{
 	void	*window;
 	int		height;
@@ -45,6 +37,10 @@ typedef struct s_window{
 	t_image	*current;
 	t_image	*next;
 }	t_window;
+typedef struct s_player{
+	int		x;
+	int		y;
+}	t_player;
 
 void		xpm_to_sprite(t_tileset *tileset);
 char		*ft_strtrim(char const *s1, char const *set);
@@ -61,5 +57,8 @@ void		free_split(char **v);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 void		put_sprite(t_tileset *t, int *s_coord, int *coord, t_image *img);
 void		switch_image(void *screen, t_window *w);
+void		event_handler(void *screen, void *window);
+void		map_generation(char **map, t_tileset *t, t_image *img);
+char		**map_to_tab(char *path);
 
 #endif
