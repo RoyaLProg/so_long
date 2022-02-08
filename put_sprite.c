@@ -6,11 +6,12 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 16:48:00 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/05 15:14:16 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/08 03:32:11 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <mlx.h>
 
 void	ft_pixel_put(t_image *data, int x, int y, int color)
 {
@@ -24,6 +25,8 @@ int	get_color_by_char(char ***colors, char c)
 {
 	size_t	i;
 
+	if (c == '8')
+		return (0xFF000000);
 	i = 0;
 	while (colors[i])
 	{
@@ -59,6 +62,8 @@ char	**get_sprite(t_tileset *sprite, int x, int y)
 
 	i = 0;
 	v = malloc(sizeof(char *) * 33);
+	if (v == NULL)
+		return (NULL);
 	while (i < 32)
 	{
 		v[i] = ft_substr(sprite->img[y * 32 + i], x * 32, 32);

@@ -50,6 +50,8 @@ static char	***get_colors(char ***colors, int fd)
 	free_split(rv);
 	free(s);
 	colors = malloc(sizeof(char **) * (x + 1));
+	if (colors == NULL)
+		return (colors);
 	return (get_colors2(colors, fd, x));
 }
 
@@ -66,6 +68,8 @@ char	**get_images(char **img, int fd)
 	i = 0;
 	s = get_next_line(fd);
 	img = malloc(sizeof(char *) * 289);
+	if (img == NULL)
+		return (img);
 	while (i < 288)
 	{
 		img[i] = ft_strtrim(s, ",\"\n");

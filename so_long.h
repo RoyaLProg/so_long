@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/07 19:08:24 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/08 03:15:37 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_tileset{
 	char	**img;
 	char	*path;
 }	t_tileset;
+
 typedef struct s_image{
 	void	*img;
 	char	*addr;
@@ -30,16 +31,20 @@ typedef struct s_image{
 	int		line_length;
 	int		endian;
 }	t_image;
+
 typedef struct s_window{
 	void	*window;
+	void	*screen;
 	int		height;
 	int		width;
-	t_image	*current;
-	t_image	*next;
+	t_image	*m_layer;
+	t_image	*s_layer;
 }	t_window;
+
 typedef struct s_player{
-	int		x;
-	int		y;
+	int		*pos;
+	int		*dir;
+	int		animation;
 }	t_player;
 
 void		xpm_to_sprite(t_tileset *tileset);
@@ -60,5 +65,9 @@ void		switch_image(void *screen, t_window *w);
 void		event_handler(void *screen, void *window);
 void		map_generation(char **map, t_tileset *t, t_image *img);
 char		**map_to_tab(char *path);
-
+void		put_character(t_window *w, t_player *p, t_image *img, t_tileset *t);
+int			create_trgb(int t, int r, int g, int b);
+char		**get_sprite(t_tileset *sprite, int x, int y);
+int	get_color_by_char(char ***colors, char c);
+void	ft_pixel_put(t_image *data, int x, int y, int color);
 #endif

@@ -42,6 +42,14 @@ int	ft_keys(int keycode, t_vars *vars)
 {
 	if (keycode == KEY_ESC)
 		exit(1);
+	if (keycode == KEY_W)
+		exit(1);
+	if (keycode == KEY_A)
+		exit(1);
+	if (keycode == KEY_S)
+		exit(1);
+	if (keycode == KEY_D)
+		exit(1);
 }
 
 void	event_handler(void *screen, void *window)
