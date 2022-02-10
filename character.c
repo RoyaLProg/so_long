@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:14:36 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/08 03:35:36 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/09 21:10:46 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,14 @@ void	put_character(t_window *w, t_player *p, t_image *img, t_tileset *t)
 	}
 }
 
+void	change_direction(t_player *p, int x, int y)
+{
+	p->dir[0] = x;
+	p->dir[1] = y;
+}
+
+void	move(t_player *p)
+{
+	p->pos[0] += p->dir[0];
+	p->pos[1] += p->dir[1];
+}

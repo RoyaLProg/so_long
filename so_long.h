@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/08 03:15:37 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/10 09:11:14 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct s_tileset{
 	char	***colors;
 	char	**img;
+	char	**map;
 	char	*path;
 }	t_tileset;
 
@@ -37,8 +38,8 @@ typedef struct s_window{
 	void	*screen;
 	int		height;
 	int		width;
-	t_image	*m_layer;
-	t_image	*s_layer;
+	t_image	*current;
+	t_image	*next;
 }	t_window;
 
 typedef struct s_player{
@@ -46,6 +47,12 @@ typedef struct s_player{
 	int		*dir;
 	int		animation;
 }	t_player;
+
+typedef struct s_vars{
+	t_tileset	*t;
+	t_window	*w;
+	t_player	*p;
+}	t_vars;
 
 void		xpm_to_sprite(t_tileset *tileset);
 char		*ft_strtrim(char const *s1, char const *set);
@@ -62,12 +69,15 @@ void		free_split(char **v);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 void		put_sprite(t_tileset *t, int *s_coord, int *coord, t_image *img);
 void		switch_image(void *screen, t_window *w);
-void		event_handler(void *screen, void *window);
+void		event_handler(t_player	*p, t_window *w);
 void		map_generation(char **map, t_tileset *t, t_image *img);
 char		**map_to_tab(char *path);
 void		put_character(t_window *w, t_player *p, t_image *img, t_tileset *t);
 int			create_trgb(int t, int r, int g, int b);
 char		**get_sprite(t_tileset *sprite, int x, int y);
-int	get_color_by_char(char ***colors, char c);
-void	ft_pixel_put(t_image *data, int x, int y, int color);
+int			get_color_by_char(char ***colors, char c);
+void		ft_pixel_put(t_image *data, int x, int y, int color);
+void		change_direction(t_player *p, int x, int y);
+int			render_next_frame(t_vars *vars);
+void		move(t_player *p);
 #endif

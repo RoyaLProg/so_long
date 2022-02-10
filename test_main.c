@@ -8,18 +8,20 @@ int main(int ac, char **av)
 	t_window window;
 	t_image img;
 	t_image img2;
+	t_vars	vars;
 	void *screen;
 	size_t i;
-	char **map;
 	t_player player;
 
 	screen = mlx_init();
 	window.screen = screen;
 	player.animation = 0;
 	player.pos = malloc(sizeof(int) * 2);
-	player.pos[0] = 1;
-	player.pos[1] = 5;
+	player.pos[0] = 10;
+	player.pos[1] = 10;
 	player.dir = malloc(sizeof(int) * 2);
+	player.dir[0] = 0;
+	player.dir[1] = 0;
 	window.window = mlx_new_window(screen, 900, 900, "test");
 	img.img = mlx_new_image(screen, 900, 900);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
@@ -27,16 +29,16 @@ int main(int ac, char **av)
 	img2.img = mlx_new_image(screen, 900, 900);
 	img2.addr = mlx_get_data_addr(img2.img, &img2.bits_per_pixel, &img2.line_length,
 								&img2.endian);
-	window.s_layer = &img;
-	window.m_layer = &img2;
+	window.current = &img2;
+	window.next = &img;
 	test.path = "tileset/Beach Tileset.xpm";
 	i = 0;
+	vars.p = &player;
+	vars.t = &test;
+	vars.w = &window;
 	xpm_to_sprite(&test);
-	map = map_to_tab("maps/map1.ber");
-	map_generation(map, &test, window.s_layer);
-	put_character(&window, &player, window.s_layer, &test);
-	mlx_put_image_to_window(screen, window.window, window.s_layer->img, 0, 0);
-	event_handler(screen, window.window);
+	test.map = map_to_tab("maps/map1.ber");
+	mlx_loop_hook(screen, render_next_frame, &vars);
 	mlx_loop(screen);
 	mlx_destroy_window(screen, window.window);
 	while (test.colors[i])
@@ -52,5 +54,5 @@ int main(int ac, char **av)
 	free(player.pos);
 	free(player.dir);
 	free_split(test.img);
-	free_split(map);
+	free_split(test.map);
 }

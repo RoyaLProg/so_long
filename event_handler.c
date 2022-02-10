@@ -13,17 +13,13 @@
 #include "so_long.h"
 #include <mlx.h>
 
-typedef struct s_vars{
-	void	*mlx;
-	void	*win;
-}	t_vars;
-
 enum e_events{
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
 };
+
 enum e_keycodes
 {
 	KEY_ESC = 65307,
@@ -38,27 +34,34 @@ int	ft_close(int keycode, t_vars *vars)
 	exit(1);
 }
 
-int	ft_keys(int keycode, t_vars *vars)
+int	ft_keys(int keycode, t_player *p)
 {
 	if (keycode == KEY_ESC)
 		exit(1);
 	if (keycode == KEY_W)
-		exit(1);
+		change_direction(p, 0, -1);
 	if (keycode == KEY_A)
-		exit(1);
+		change_direction(p, -1, 0);
 	if (keycode == KEY_S)
-		exit(1);
+		change_direction(p, 0, 1);
 	if (keycode == KEY_D)
-		exit(1);
+		change_direction(p, 1, 0);
 }
 
-void	event_handler(void *screen, void *window)
+int	ft_reset(int keycode, t_player *p)
+{
+	if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S
+		|| keycode == KEY_D)
+	{
+		change_direction(p, 0, 0);
+	}
+}
+
+void	event_handler(t_player *p, t_window *w)
 {
 	t_vars	vars;
 
-	vars.win = window;
-	vars.mlx = screen;
-
-	mlx_hook(vars.win, ON_DESTROY, 0, ft_close, &vars);
-	mlx_hook(vars.win, ON_KEYDOWN, 1L << 0, ft_keys, &vars);
+	mlx_hook(w->window, ON_DESTROY, 0, ft_close, NULL);
+	mlx_hook(w->window, ON_KEYDOWN, 1L << 0, ft_keys, p);
+	mlx_hook(w->window, ON_KEYUP, 1L << 0, ft_reset, p);
 }
