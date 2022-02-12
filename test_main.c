@@ -23,6 +23,8 @@ int main(int ac, char **av)
 	player.dir[0] = 0;
 	player.dir[1] = 0;
 	window.window = mlx_new_window(screen, 900, 900, "test");
+	//img = (t_image *)malloc(sizeof(t_image));
+	//img2 = (t_image *)malloc(sizeof(t_image));
 	img.img = mlx_new_image(screen, 900, 900);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
@@ -38,7 +40,9 @@ int main(int ac, char **av)
 	vars.w = &window;
 	xpm_to_sprite(&test);
 	test.map = map_to_tab("maps/map1.ber");
+	event_handler(&player, &window);
 	mlx_loop_hook(screen, render_next_frame, &vars);
+	render_next_frame(&vars);
 	mlx_loop(screen);
 	mlx_destroy_window(screen, window.window);
 	while (test.colors[i])

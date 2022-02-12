@@ -20,5 +20,5 @@ void	switch_image(void *screen, t_window *w)
 	ptr = w->current;
 	w->current = w ->next;
 	w->next = ptr;
-	mlx_put_image_to_window(w->screen, w->window, w->current, 0, 0);
+	mlx_put_image_to_window(w->screen, w->window, w->current->img, 0, 0);
 }
