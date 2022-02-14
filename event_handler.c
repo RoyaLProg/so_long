@@ -54,6 +54,7 @@ int	ft_reset(int keycode, t_player *p)
 		|| keycode == KEY_D)
 	{
 		change_direction(p, 0, 0);
+		p->animation = 0;
 	}
 }
 
