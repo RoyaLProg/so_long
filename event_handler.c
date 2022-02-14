@@ -39,13 +39,13 @@ int	ft_keys(int keycode, t_player *p)
 	if (keycode == KEY_ESC)
 		exit(1);
 	if (keycode == KEY_W)
-		change_direction(p, 0, -1);
+		change_direction(p, 0, -32);
 	if (keycode == KEY_A)
-		change_direction(p, -1, 0);
+		change_direction(p, -32, 0);
 	if (keycode == KEY_S)
-		change_direction(p, 0, 1);
+		change_direction(p, 0, 32);
 	if (keycode == KEY_D)
-		change_direction(p, 1, 0);
+		change_direction(p, 32, 0);
 }
 
 int	ft_reset(int keycode, t_player *p)
@@ -63,5 +63,5 @@ void	event_handler(t_player *p, t_window *w)
 
 	mlx_hook(w->window, ON_DESTROY, 0, ft_close, NULL);
 	mlx_hook(w->window, ON_KEYDOWN, 1L << 0, ft_keys, p);
-	mlx_hook(w->window, ON_KEYUP, 1L << 0, ft_reset, p);
+	mlx_hook(w->window, ON_KEYUP, 1L << 1, ft_reset, p);
 }

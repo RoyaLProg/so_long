@@ -1,1 +1,1 @@
-gcc test_main.c ft_*.c sprite_to_tab.c put_sprite.c tools.c mlx_linux/libmlx_Linux.a get_next_line/*.c hex_to_int.c event_handler.c map_generation.c map_to_tab.c character.c -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -fsanitize=address -g3
+gcc test_main.c ft_*.c sprite_to_tab.c put_sprite.c tools.c mlx_linux/libmlx_Linux.a get_next_line/*.c hex_to_int.c event_handler.c map_generation.c map_to_tab.c character.c render_next_frame.c switch_image.c -Lmlx_linux -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -fsanitize=address -g3
