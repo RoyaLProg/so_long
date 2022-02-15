@@ -46,6 +46,9 @@ int	ft_keys(int keycode, t_player *p)
 		change_direction(p, 0, 32);
 	if (keycode == KEY_D)
 		change_direction(p, 32, 0);
+	p->animation += 1;
+	if (p->animation == 5)
+		p->animation = 1;
 }
 
 int	ft_reset(int keycode, t_player *p)
@@ -54,7 +57,6 @@ int	ft_reset(int keycode, t_player *p)
 		|| keycode == KEY_D)
 	{
 		change_direction(p, 0, 0);
-		p->animation = 0;
 	}
 }
 

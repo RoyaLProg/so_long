@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/14 12:57:07 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/15 10:50:05 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,4 @@ void		ft_pixel_put(t_image *data, int x, int y, int color);
 void		change_direction(t_player *p, int x, int y);
 int			render_next_frame(void *vars);
 void		move(t_player *p);
-int			update_frame(void *v);
 #endif
