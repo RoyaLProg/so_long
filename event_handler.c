@@ -39,16 +39,13 @@ int	ft_keys(int keycode, t_player *p)
 	if (keycode == KEY_ESC)
 		exit(1);
 	if (keycode == KEY_W)
-		change_direction(p, 0, -32);
+		change_direction(p, 0, -8);
 	if (keycode == KEY_A)
-		change_direction(p, -32, 0);
+		change_direction(p, -8, 0);
 	if (keycode == KEY_S)
-		change_direction(p, 0, 32);
+		change_direction(p, 0, 8);
 	if (keycode == KEY_D)
-		change_direction(p, 32, 0);
-	p->animation += 1;
-	if (p->animation == 5)
-		p->animation = 1;
+		change_direction(p, 8, 0);
 }
 
 int	ft_reset(int keycode, t_player *p)

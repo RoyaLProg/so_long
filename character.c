@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:14:36 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/15 11:00:02 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/16 07:37:13 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,9 @@ void	move(t_player *p)
 {
 	p->pos[0] += p->dir[0];
 	p->pos[1] += p->dir[1];
+	p->animation += 1;
+	if (p->animation == 5)
+		p->animation = 0;
+	if (p->dir[0] == 0 && p->dir[1] == 0)
+		p->animation = 0;
 }
