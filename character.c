@@ -6,11 +6,35 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:14:36 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/16 07:37:13 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/16 09:34:11 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	locate_player(char **map, t_game *game)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+			{
+				game->p->pos[0] = j;
+				game->p->pos[1] = i;
+				map[i][j] = '0';
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
 void	put_chara_to_img(char **sprite, int *coord, char ***colors, void *img)
 {

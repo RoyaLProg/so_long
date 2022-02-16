@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/15 10:50:05 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/16 07:59:52 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ typedef struct s_vars{
 	t_window	*w;
 	t_player	*p;
 }	t_vars;
+
+typedef struct s_game{
+	t_tileset	*t;
+	t_window	*w;
+	t_player	*p;
+}	t_game;
 
 void		xpm_to_sprite(t_tileset *tileset);
 char		*ft_strtrim(char const *s1, char const *set);
