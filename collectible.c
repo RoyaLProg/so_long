@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   character.c                                        :+:      :+:    :+:   */
+/*   collectible.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/07 20:14:36 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/17 09:32:06 by ccambium         ###   ########.fr       */
+/*   Created: 2022/02/17 09:31:12 by ccambium          #+#    #+#             */
+/*   Updated: 2022/02/17 09:37:31 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	locate_player(char **map, t_game *game)
+void	locate_collectible(char **map, t_game *game)
 {
 	size_t	i;
 	size_t	j;
@@ -23,10 +23,10 @@ void	locate_player(char **map, t_game *game)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'P')
+			if (map[i][j] == 'C')
 			{
-				game->p->pos[0] = j;
-				game->p->pos[1] = i;
+				game->c->pos[0] = j;
+				game->c->pos[1] = i;
 				map[i][j] = '0';
 				return ;
 			}
@@ -36,7 +36,8 @@ void	locate_player(char **map, t_game *game)
 	}
 }
 
-void	put_chara_to_img(char **sprite, int *coord, char ***colors, void *img)
+static void	put_collectible_to_img(char **sprite, int *coord,
+								char ***colors, void *img)
 {
 	int		i;
 	int		j;
@@ -61,31 +62,14 @@ void	put_chara_to_img(char **sprite, int *coord, char ***colors, void *img)
 	free_split(sprite);
 }
 
-void	put_character(t_window *w, t_player *p, t_image *img, t_tileset *t)
+void	put_collectible(t_window *w, t_collec *c, t_image *img, t_tileset *t)
 {
 	char	**sprite;
 
-	if (p->animation == 0)
-		put_chara_to_img(get_sprite(t, 14, 0),
-			p->pos, t->colors, img);
+	if (c->state == 0)
+		put_collectible_to_img(get_sprite(t, 14, 0),
+			c->pos, t->colors, img);
 	else
-		put_chara_to_img(get_sprite(t, 14 + p->animation - 1, 2),
-			p->pos, t->colors, img);
-}
-
-void	change_direction(t_player *p, int x, int y)
-{
-	p->dir[0] = x;
-	p->dir[1] = y;
-}
-
-void	move(t_player *p)
-{
-	p->pos[0] += p->dir[0];
-	p->pos[1] += p->dir[1];
-	p->animation += 1;
-	if (p->animation == 5)
-		p->animation = 0;
-	if (p->dir[0] == 0 && p->dir[1] == 0)
-		p->animation = 0;
+		put_collectible_to_img(get_sprite(t, 14, 0),
+			c->pos, t->colors, img);
 }

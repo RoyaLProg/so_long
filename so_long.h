@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/16 07:59:52 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/17 09:38:05 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ typedef struct s_player{
 	int		animation;
 }	t_player;
 
+typedef struct s_collec{
+	int		*pos;
+	int		state;
+}	t_collec;
+
 typedef struct s_vars{
 	t_tileset	*t;
 	t_window	*w;
@@ -58,6 +63,7 @@ typedef struct s_game{
 	t_tileset	*t;
 	t_window	*w;
 	t_player	*p;
+	t_collec	*c;
 }	t_game;
 
 void		xpm_to_sprite(t_tileset *tileset);
@@ -86,4 +92,9 @@ void		ft_pixel_put(t_image *data, int x, int y, int color);
 void		change_direction(t_player *p, int x, int y);
 int			render_next_frame(void *vars);
 void		move(t_player *p);
+int			map_verification(char **map, t_game *game);
+void		locate_player(char **map, t_game *game);
+void		locate_collectible(char **map, t_game *game);
+void		remapping(char **map);
+
 #endif

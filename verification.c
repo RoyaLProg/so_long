@@ -6,27 +6,27 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 07:58:11 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/16 09:25:47 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/17 09:28:22 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	is_up_down_wall(char *s)
+static int	is_up_down_wall(char *s)
 {
 	size_t	i;
 
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] != '1' || s[i] != '1')
+		if (s[i] != '1' && s[i] != '\n')
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int	is_map_rect(char **map)
+static int	is_map_rect(char **map)
 {
 	size_t	i;
 	size_t	len;
@@ -42,7 +42,7 @@ int	is_map_rect(char **map)
 	return (i);
 }
 
-int	is_there_requirements(char **map)
+static int	is_there_requirements(char **map)
 {
 	int		v[3];
 	size_t	i;
