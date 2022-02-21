@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/17 09:38:05 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/21 12:55:31 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ typedef struct s_window{
 }	t_window;
 
 typedef struct s_player{
-	int		*pos;
-	int		*dir;
+	int		pos[2];
+	int		dir[2];
 	int		animation;
 }	t_player;
 
 typedef struct s_collec{
-	int		*pos;
+	int		pos[2];
 	int		state;
 }	t_collec;
 

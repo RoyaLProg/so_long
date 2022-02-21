@@ -8,7 +8,9 @@ int main(int ac, char **av)
 	t_window window;
 	t_image img;
 	t_image img2;
+	t_game	g;
 	t_vars	vars;
+	t_collec c;
 	void *screen;
 	size_t i;
 	t_player player;
@@ -16,10 +18,8 @@ int main(int ac, char **av)
 	screen = mlx_init();
 	window.screen = screen;
 	player.animation = 0;
-	player.pos = malloc(sizeof(int) * 2);
 	player.pos[0] = 10;
 	player.pos[1] = 10;
-	player.dir = malloc(sizeof(int) * 2);
 	player.dir[0] = 0;
 	player.dir[1] = 0;
 	window.window = mlx_new_window(screen, 900, 900, "test");
@@ -40,6 +40,8 @@ int main(int ac, char **av)
 	vars.w = &window;
 	xpm_to_sprite(&test);
 	test.map = map_to_tab("maps/map1.ber");
+	c.pos[0] = 5;
+	c.pos[1] = 5;
 	event_handler(&player, &window);
 	mlx_loop_hook(screen, render_next_frame, &vars);
 	render_next_frame(&vars);
@@ -55,8 +57,6 @@ int main(int ac, char **av)
 	}
 	free(test.colors[i]);
 	free(test.colors);
-	free(player.pos);
-	free(player.dir);
 	free_split(test.img);
 	free_split(test.map);
 }
