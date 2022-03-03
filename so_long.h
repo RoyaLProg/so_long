@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/21 12:55:31 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/03 05:38:33 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_player{
 	int		pos[2];
 	int		dir[2];
 	int		animation;
+	int		state;
 }	t_player;
 
 typedef struct s_collec{
@@ -81,7 +82,7 @@ void		free_split(char **v);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 void		put_sprite(t_tileset *t, int *s_coord, int *coord, t_image *img);
 void		switch_image(void *screen, t_window *w);
-void		event_handler(t_player	*p, t_window *w);
+void		event_handler(t_vars *vars);
 void		map_generation(char **map, t_tileset *t, t_image *img);
 char		**map_to_tab(char *path);
 void		put_character(t_window *w, t_player *p, t_image *img, t_tileset *t);
@@ -90,11 +91,16 @@ char		**get_sprite(t_tileset *sprite, int x, int y);
 int			get_color_by_char(char ***colors, char c);
 void		ft_pixel_put(t_image *data, int x, int y, int color);
 void		change_direction(t_player *p, int x, int y);
-int			render_next_frame(void *vars);
-void		move(t_player *p);
+int			render_next_frame(t_vars *vars);
+void		move(t_player *p, t_vars *vars);
 int			map_verification(char **map, t_game *game);
 void		locate_player(char **map, t_game *game);
 void		locate_collectible(char **map, t_game *game);
 void		remapping(char **map);
+int			will_collide_wall(int *pos, int *dir, char **map);
+char		*ft_itoa(int n);
+int			ft_flour(double n);
+int			ft_ceil(double n);
+int			will_inside_collide_wall(int *pos, int *dir, char **map);
 
 #endif

@@ -29,39 +29,39 @@ enum e_keycodes
 	KEY_D = 100
 };
 
-int	ft_close(int keycode, t_vars *vars)
+int	ft_close(int keycode)
 {
 	exit(1);
 }
 
-int	ft_keys(int keycode, t_player *p)
+int	ft_keys(int keycode, t_vars *v)
 {
 	if (keycode == KEY_ESC)
 		exit(1);
-	if (keycode == KEY_W)
-		change_direction(p, 0, -8);
-	if (keycode == KEY_A)
-		change_direction(p, -8, 0);
-	if (keycode == KEY_S)
-		change_direction(p, 0, 8);
-	if (keycode == KEY_D)
-		change_direction(p, 8, 0);
-}
-
-int	ft_reset(int keycode, t_player *p)
-{
-	if (keycode == KEY_W || keycode == KEY_A || keycode == KEY_S
-		|| keycode == KEY_D)
+	if (keycode == KEY_W && v->p->state)
 	{
-		change_direction(p, 0, 0);
+		change_direction(v->p, 0, -1);
+		move(v->p, v);
+	}
+	if (keycode == KEY_A && v->p->state)
+	{
+		change_direction(v->p, -1, 0);
+		move(v->p, v);
+	}
+	if (keycode == KEY_S && v->p->state)
+	{
+		change_direction(v->p, 0, 1);
+		move(v->p, v);
+	}
+	if (keycode == KEY_D && v->p->state)
+	{
+		change_direction(v->p, 1, 0);
+		move(v->p, v);
 	}
 }
 
-void	event_handler(t_player *p, t_window *w)
+void	event_handler(t_vars *vars)
 {
-	t_vars	vars;
-
-	mlx_hook(w->window, ON_DESTROY, 0, ft_close, NULL);
-	mlx_hook(w->window, ON_KEYDOWN, 1L << 0, ft_keys, p);
-	mlx_hook(w->window, ON_KEYUP, 1L << 1, ft_reset, p);
+	mlx_hook(vars->w->window, ON_DESTROY, 0, ft_close, NULL);
+	mlx_hook(vars->w->window, ON_KEYDOWN, 1L << 0, ft_keys, vars);
 }

@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 10:25:08 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/21 13:24:44 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/02/25 16:18:29 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,32 @@ int	will_collide(int *pos1, int	*pos2)
 	return (0);
 }
 
-int	will_collide_wall(int *pos, char **map)
+int	will_inside_collide_wall(int *pos, int *dir, char **map)
+{
+	int	x1;
+	int	y1;
+	int	x2;
+	int	y2;
+
+	x1 = ft_ceil((pos[0] + dir[0]) / 32);
+	y1 = ft_ceil((pos[1] + dir[1]) / 32);
+	x2 = ft_flour((pos[0] + dir[0]) / 32);
+	y2 = ft_flour((pos[1] + dir[1]) / 32);
+	printf("x:%d y:%d\n", x2, y2);
+	return (
+		map[y1][x1] == '1'
+		|| map[y2][x2] == '1'
+	);
+}
+
+int	will_collide_wall(int *pos, int *dir, char **map)
 {
 	return (
-		(pos[0] / 32 == 0)
-		|| (pos[0] / 32 == ft_strlen(map[0]))
-		|| (pos[1] / 32 == 0)
-		|| (pos[1] / 32 == sizeof(map))
+		(pos[0] + dir[0]) < 32
+		|| (pos[0] + dir[0]) > (ft_strlen(map[0]) - 3) * 32
+		|| (pos[1] + dir[1]) < 32
+		|| (pos[1] + dir[1]) > (sizeof(map) - 2) * 32
+		|| will_inside_collide_wall(pos, dir, map)
 	);
 }
 

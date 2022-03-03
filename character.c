@@ -6,11 +6,12 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:14:36 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/17 09:32:06 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/03 06:38:03 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <mlx.h>
 
 void	locate_player(char **map, t_game *game)
 {
@@ -79,13 +80,25 @@ void	change_direction(t_player *p, int x, int y)
 	p->dir[1] = y;
 }
 
-void	move(t_player *p)
+void	move(t_player *p, t_vars *vars)
 {
-	p->pos[0] += p->dir[0];
-	p->pos[1] += p->dir[1];
-	p->animation += 1;
-	if (p->animation == 5)
-		p->animation = 0;
-	if (p->dir[0] == 0 && p->dir[1] == 0)
-		p->animation = 0;
+	int	i;
+
+	i = 0;
+	p->state = 0;
+	p->animation = 1;
+	while (i < 4)
+	{
+		p->pos[0] += 8 * p->dir[0];
+		p->pos[1] += 8 * p->dir[1];
+		p->animation += 1;
+		if (p->animation == 5)
+			p->animation = 0;
+		map_generation(vars->t->map, vars->t, vars->w->next);
+		put_character(vars->w->window, vars->p, vars->w->next, vars->t);
+		mlx_put_image_to_window(vars->w->screen, vars->w->window, vars->w->next->img, 0, 0);
+		i++;
+	}
+	p->animation = 0;
+	p->state = 1;
 }

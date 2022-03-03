@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "so_long.h"
 #include <mlx.h>
 
@@ -18,10 +19,11 @@ int main(int ac, char **av)
 	screen = mlx_init();
 	window.screen = screen;
 	player.animation = 0;
-	player.pos[0] = 10;
-	player.pos[1] = 10;
+	player.pos[0] = 32*5;
+	player.pos[1] = 32*3;
 	player.dir[0] = 0;
 	player.dir[1] = 0;
+	player.state = 1;
 	window.window = mlx_new_window(screen, 900, 900, "test");
 	//img = (t_image *)malloc(sizeof(t_image));
 	//img2 = (t_image *)malloc(sizeof(t_image));
@@ -42,9 +44,8 @@ int main(int ac, char **av)
 	test.map = map_to_tab("maps/map1.ber");
 	c.pos[0] = 5;
 	c.pos[1] = 5;
-	event_handler(&player, &window);
-	mlx_loop_hook(screen, render_next_frame, &vars);
 	render_next_frame(&vars);
+	event_handler(&vars);
 	mlx_loop(screen);
 	mlx_destroy_window(screen, window.window);
 	while (test.colors[i])
