@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:31:12 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/09 06:00:08 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/10 05:58:14 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,25 +62,55 @@ static void	put_collectible_to_img(char **sprite, int *coord,
 	free_split(sprite);
 }
 
-void	take_collectible(t_collec *c)
+int	count_collec(char **map)
 {
-	c->state = 0;
+	size_t	i;
+	size_t	j;
+	size_t	v;
+
+	v = 0;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+				v += 1;
+			j++;
+		}
+		i++;
+	}
+
+	return (v);
 }
 
-void	put_collectible(t_vars *v)
+void	put_collectible(t_collec *c, t_vars *v)
 {
 	char	**sprite;
 
-	if (is_near(v->p->pos, v->c->pos) || is_on_collectible(v->p, v->c))
+	if (is_near(v->p->pos, c->pos) || is_on_collectible(v->p, c))
 	{
-		if (v->c->state)
+		if (c->state)
 			put_collectible_to_img(get_sprite(v->t, 3, 0),
-				v->c->pos, v->t->colors, v->w->next);
+				c->pos, v->t->colors, v->w->next);
 		else
 			put_collectible_to_img(get_sprite(v->t, 2, 0),
-				v->c->pos, v->t->colors, v->w->next);
+				c->pos, v->t->colors, v->w->next);
 	}
 	else
 		put_collectible_to_img(get_sprite(v->t, 1, 0),
-			v->c->pos, v->t->colors, v->w->next);
+			c->pos, v->t->colors, v->w->next);
+}
+
+void	collec_foreach(t_collec *head, void (*f)(), t_vars *param)
+{
+	t_collec	*x;
+
+	x = head;
+	while (x != NULL)
+	{
+		f((t_collec *)x, param);
+		x = (t_collec *)x->next;
+	}
 }

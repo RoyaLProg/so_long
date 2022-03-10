@@ -12,6 +12,7 @@ int main(int ac, char **av)
 	t_game	g;
 	t_vars	vars;
 	t_collec c;
+	t_collec c2;
 	void *screen;
 	size_t i;
 	t_player player;
@@ -45,6 +46,11 @@ int main(int ac, char **av)
 	c.pos[0] = 5;
 	c.pos[1] = 5;
 	c.state = 1;
+	c.next = &c2;
+	c2.pos[0] = 9;
+	c2.pos[1] = 3;
+	c2.state = 1;
+	c2.next = NULL;
 	vars.c = &c;
 	event_handler(&vars);
 	mlx_loop_hook(screen, render_next_frame, &vars);

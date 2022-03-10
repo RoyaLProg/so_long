@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/09 05:56:38 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/10 05:31:52 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ int			ft_flour(double n);
 int			ft_ceil(double n);
 int			is_near(int	*pos1, int *pos2);
 int			is_on_collectible(t_player *p, t_collec *c);
-void		put_collectible(t_vars *v);
-void		take_collectible(t_collec *c);
+void		put_collectible(t_collec *c, t_vars *v);
+void		take_collectible(t_collec *c, t_vars *vars);
+void		collec_foreach(t_collec *head, void (*f)(), t_vars *param);
 
 #endif
