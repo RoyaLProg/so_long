@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:31:12 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/17 09:37:31 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/09 06:00:08 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	put_collectible_to_img(char **sprite, int *coord,
 				j++;
 				continue ;
 			}
-			ft_pixel_put(img, coord[0] + j, coord[1] + i,
+			ft_pixel_put(img, (coord[0] * 32) + j, (coord[1] * 32) + i,
 				get_color_by_char(colors, sprite[i][j]));
 			j++;
 		}
@@ -62,14 +62,25 @@ static void	put_collectible_to_img(char **sprite, int *coord,
 	free_split(sprite);
 }
 
-void	put_collectible(t_window *w, t_collec *c, t_image *img, t_tileset *t)
+void	take_collectible(t_collec *c)
+{
+	c->state = 0;
+}
+
+void	put_collectible(t_vars *v)
 {
 	char	**sprite;
 
-	if (c->state == 0)
-		put_collectible_to_img(get_sprite(t, 14, 0),
-			c->pos, t->colors, img);
+	if (is_near(v->p->pos, v->c->pos) || is_on_collectible(v->p, v->c))
+	{
+		if (v->c->state)
+			put_collectible_to_img(get_sprite(v->t, 3, 0),
+				v->c->pos, v->t->colors, v->w->next);
+		else
+			put_collectible_to_img(get_sprite(v->t, 2, 0),
+				v->c->pos, v->t->colors, v->w->next);
+	}
 	else
-		put_collectible_to_img(get_sprite(t, 14, 0),
-			c->pos, t->colors, img);
+		put_collectible_to_img(get_sprite(v->t, 1, 0),
+			v->c->pos, v->t->colors, v->w->next);
 }

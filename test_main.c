@@ -45,6 +45,8 @@ int main(int ac, char **av)
 	c.pos[0] = 5;
 	c.pos[1] = 5;
 	render_next_frame(&vars);
+	c.state = 1;
+	vars.c = &c;
 	event_handler(&vars);
 	mlx_loop(screen);
 	mlx_destroy_window(screen, window.window);
