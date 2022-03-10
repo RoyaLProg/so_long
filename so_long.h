@@ -92,7 +92,7 @@ int			get_color_by_char(char ***colors, char c);
 void		ft_pixel_put(t_image *data, int x, int y, int color);
 void		change_direction(t_player *p, int x, int y);
 int			render_next_frame(t_vars *vars);
-void		move(t_player *p, t_vars *vars);
+void		move(t_player *p, t_vars *vars, int x, int y);
 int			map_verification(char **map, t_game *game);
 void		locate_player(char **map, t_game *game);
 void		locate_collectible(char **map, t_game *game);

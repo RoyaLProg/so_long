@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:14:36 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/03 06:38:03 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/09 05:54:31 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	put_chara_to_img(char **sprite, int *coord, char ***colors, void *img)
 				j++;
 				continue ;
 			}
-			ft_pixel_put(img, coord[0] + j, coord[1] + i,
+			ft_pixel_put(img, (coord[0] * 32) + j, (coord[1] * 32) + i,
 				get_color_by_char(colors, sprite[i][j]));
 			j++;
 		}
@@ -74,31 +74,16 @@ void	put_character(t_window *w, t_player *p, t_image *img, t_tileset *t)
 			p->pos, t->colors, img);
 }
 
-void	change_direction(t_player *p, int x, int y)
+void	move(t_player *p, t_vars *v, int x, int y)
 {
 	p->dir[0] = x;
 	p->dir[1] = y;
-}
-
-void	move(t_player *p, t_vars *vars)
-{
-	int	i;
-
-	i = 0;
-	p->state = 0;
-	p->animation = 1;
-	while (i < 4)
+	if (will_collide_wall(p->pos, p->dir, v->t->map))
 	{
-		p->pos[0] += 8 * p->dir[0];
-		p->pos[1] += 8 * p->dir[1];
-		p->animation += 1;
-		if (p->animation == 5)
-			p->animation = 0;
-		map_generation(vars->t->map, vars->t, vars->w->next);
-		put_character(vars->w->window, vars->p, vars->w->next, vars->t);
-		mlx_put_image_to_window(vars->w->screen, vars->w->window, vars->w->next->img, 0, 0);
-		i++;
+		p->state = 1;
+		return ;
 	}
-	p->animation = 0;
+	p->pos[0] += x;
+	p->pos[1] += y;
 	p->state = 1;
 }

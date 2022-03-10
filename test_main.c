@@ -19,8 +19,8 @@ int main(int ac, char **av)
 	screen = mlx_init();
 	window.screen = screen;
 	player.animation = 0;
-	player.pos[0] = 32*5;
-	player.pos[1] = 32*3;
+	player.pos[0] = 5;
+	player.pos[1] = 3;
 	player.dir[0] = 0;
 	player.dir[1] = 0;
 	player.state = 1;

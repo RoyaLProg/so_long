@@ -36,27 +36,29 @@ int	ft_close(int keycode)
 
 int	ft_keys(int keycode, t_vars *v)
 {
+	if (v->p->state == 0)
+		return (1);
 	if (keycode == KEY_ESC)
 		exit(1);
-	if (keycode == KEY_W && v->p->state)
+	if (keycode == KEY_W)
 	{
-		change_direction(v->p, 0, -1);
-		move(v->p, v);
+		v->p->state = 0;
+		move(v->p, v, 0, -1);
 	}
-	if (keycode == KEY_A && v->p->state)
+	if (keycode == KEY_A)
 	{
-		change_direction(v->p, -1, 0);
-		move(v->p, v);
+		v->p->state = 0;
+		move(v->p, v, -1, 0);
 	}
-	if (keycode == KEY_S && v->p->state)
+	if (keycode == KEY_S)
 	{
-		change_direction(v->p, 0, 1);
-		move(v->p, v);
+		v->p->state = 0;
+		move(v->p, v, 0, 1);
 	}
-	if (keycode == KEY_D && v->p->state)
+	if (keycode == KEY_D)
 	{
-		change_direction(v->p, 1, 0);
-		move(v->p, v);
+		v->p->state = 0;
+		move(v->p, v, 1, 0);
 	}
 }
 
