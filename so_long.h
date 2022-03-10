@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/03 05:38:33 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/09 05:56:38 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_vars{
 	t_tileset	*t;
 	t_window	*w;
 	t_player	*p;
+	t_collec	*c;
 }	t_vars;
 
 typedef struct s_game{
@@ -81,6 +82,7 @@ int			ft_pow(int x, int pow);
 void		free_split(char **v);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 void		put_sprite(t_tileset *t, int *s_coord, int *coord, t_image *img);
+void		put_sprite_to_img(char **sprite, int *coord, char ***colors, void *img);
 void		switch_image(void *screen, t_window *w);
 void		event_handler(t_vars *vars);
 void		map_generation(char **map, t_tileset *t, t_image *img);
@@ -90,7 +92,6 @@ int			create_trgb(int t, int r, int g, int b);
 char		**get_sprite(t_tileset *sprite, int x, int y);
 int			get_color_by_char(char ***colors, char c);
 void		ft_pixel_put(t_image *data, int x, int y, int color);
-void		change_direction(t_player *p, int x, int y);
 int			render_next_frame(t_vars *vars);
 void		move(t_player *p, t_vars *vars, int x, int y);
 int			map_verification(char **map, t_game *game);
@@ -101,6 +102,9 @@ int			will_collide_wall(int *pos, int *dir, char **map);
 char		*ft_itoa(int n);
 int			ft_flour(double n);
 int			ft_ceil(double n);
-int			will_inside_collide_wall(int *pos, int *dir, char **map);
+int			is_near(int	*pos1, int *pos2);
+int			is_on_collectible(t_player *p, t_collec *c);
+void		put_collectible(t_vars *v);
+void		take_collectible(t_collec *c);
 
 #endif
