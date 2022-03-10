@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:31:53 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/25 16:27:12 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/10 05:08:10 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,4 @@ void	free_split(char **v)
 		i++;
 	}
 	free(v);
-}
-
-int	ft_ceil(double n)
-{
-	int		x;
-	double	y;
-
-	x = n;
-	y = (n - x);
-	if (y > 1)
-		return (x - 1);
-	return (x);
-}
-
-int	ft_flour(double n)
-{
-	int		x;
-	double	y;
-
-	x = n;
-	y = (n - x);
-	if (y < 1)
-		return (x);
-	return (x - 1);
 }

@@ -3,7 +3,7 @@
 #include "so_long.h"
 #include <mlx.h>
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_tileset test;
 	t_window window;
@@ -26,14 +26,12 @@ int main(int ac, char **av)
 	player.dir[1] = 0;
 	player.state = 1;
 	window.window = mlx_new_window(screen, 900, 900, "test");
-	//img = (t_image *)malloc(sizeof(t_image));
-	//img2 = (t_image *)malloc(sizeof(t_image));
 	img.img = mlx_new_image(screen, 900, 900);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
+			&img.endian);
 	img2.img = mlx_new_image(screen, 900, 900);
 	img2.addr = mlx_get_data_addr(img2.img, &img2.bits_per_pixel, &img2.line_length,
-								&img2.endian);
+			&img2.endian);
 	window.current = &img2;
 	window.next = &img;
 	test.path = "tileset/Beach Tileset.xpm";
