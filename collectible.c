@@ -6,13 +6,13 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:31:12 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/10 05:58:14 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/12 08:36:32 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	locate_collectible(char **map, t_game *game)
+void	locate_collectible(char **map, t_vars *game)
 {
 	size_t	i;
 	size_t	j;
@@ -81,14 +81,11 @@ int	count_collec(char **map)
 		}
 		i++;
 	}
-
 	return (v);
 }
 
 void	put_collectible(t_collec *c, t_vars *v)
 {
-	char	**sprite;
-
 	if (is_near(v->p->pos, c->pos) || is_on_collectible(v->p, c))
 	{
 		if (c->state)

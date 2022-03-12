@@ -6,14 +6,14 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:14:36 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/09 05:54:31 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/12 08:39:42 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <mlx.h>
 
-void	locate_player(char **map, t_game *game)
+void	locate_player(char **map, t_vars *vars)
 {
 	size_t	i;
 	size_t	j;
@@ -26,8 +26,8 @@ void	locate_player(char **map, t_game *game)
 		{
 			if (map[i][j] == 'P')
 			{
-				game->p->pos[0] = j;
-				game->p->pos[1] = i;
+				vars->p->pos[0] = j;
+				vars->p->pos[1] = i;
 				map[i][j] = '0';
 				return ;
 			}

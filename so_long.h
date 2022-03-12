@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/10 05:31:52 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/12 08:38:14 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,23 @@ typedef struct s_player{
 }	t_player;
 
 typedef struct s_collec{
-	int		pos[2];
-	int		state;
+	int			pos[2];
+	int			state;
+	void		*next;
 }	t_collec;
+
+typedef struct s_exit{
+	int		pos[2];
+	void	*next;
+}	t_exit;
 
 typedef struct s_vars{
 	t_tileset	*t;
 	t_window	*w;
 	t_player	*p;
 	t_collec	*c;
+	t_exit		*e;
 }	t_vars;
-
-typedef struct s_game{
-	t_tileset	*t;
-	t_window	*w;
-	t_player	*p;
-	t_collec	*c;
-}	t_game;
 
 void		xpm_to_sprite(t_tileset *tileset);
 char		*ft_strtrim(char const *s1, char const *set);
@@ -94,9 +94,9 @@ int			get_color_by_char(char ***colors, char c);
 void		ft_pixel_put(t_image *data, int x, int y, int color);
 int			render_next_frame(t_vars *vars);
 void		move(t_player *p, t_vars *vars, int x, int y);
-int			map_verification(char **map, t_game *game);
-void		locate_player(char **map, t_game *game);
-void		locate_collectible(char **map, t_game *game);
+int			map_verification(char **map, t_vars *vars);
+void		locate_player(char **map, t_vars *vars);
+void		locate_collectible(char **map, t_vars *vars);
 void		remapping(char **map);
 int			will_collide_wall(int *pos, int *dir, char **map);
 char		*ft_itoa(int n);
@@ -107,5 +107,8 @@ int			is_on_collectible(t_player *p, t_collec *c);
 void		put_collectible(t_collec *c, t_vars *v);
 void		take_collectible(t_collec *c, t_vars *vars);
 void		collec_foreach(t_collec *head, void (*f)(), t_vars *param);
+int			all_collect_taken(t_collec *head);
+void		put_exit(t_exit *e, t_vars *v);
+void		exit_foreach(t_exit *head, void (*f)(), t_vars *param);
 
 #endif

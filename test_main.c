@@ -9,8 +9,8 @@ int	main(int ac, char **av)
 	t_window window;
 	t_image img;
 	t_image img2;
-	t_game	g;
 	t_vars	vars;
+	t_exit	e;
 	t_collec c;
 	t_collec c2;
 	void *screen;
@@ -50,6 +50,10 @@ int	main(int ac, char **av)
 	c2.state = 1;
 	c2.next = NULL;
 	vars.c = &c;
+	e.next = NULL;
+	e.pos[1] = 2;
+	e.pos[0] = 10;
+	vars.e = &e;
 	event_handler(&vars);
 	mlx_loop_hook(screen, render_next_frame, &vars);
 	mlx_loop(screen);

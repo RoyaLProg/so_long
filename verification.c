@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 07:58:11 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/17 09:28:22 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/12 07:40:43 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ static int	is_there_requirements(char **map)
 			j++;
 		}
 	}
-	if (!v[0] || !v[1] || !v[2])
+	if (!v[0] || v[1] != 1 || !v[2])
 		return (0);
 	return (1);
 }
 
-int	map_verification(char **map, t_game *game)
+int	map_verification(char **map, t_vars *game)
 {
 	int		fd;
 	size_t	i;

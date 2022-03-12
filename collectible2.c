@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_next_frame.c                                :+:      :+:    :+:   */
+/*   collectible2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/14 09:56:04 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/12 07:38:30 by ccambium         ###   ########.fr       */
+/*   Created: 2022/03/12 07:23:25 by ccambium          #+#    #+#             */
+/*   Updated: 2022/03/12 07:26:32 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
-int	render_next_frame(t_vars *vars)
+int	all_collect_taken(t_collec *head)
 {
-	map_generation(vars->t->map, vars->t, vars->w->next);
-	collec_foreach(vars->c, take_collectible, vars);
-	collec_foreach(vars->c, put_collectible, vars);
-	if (all_collect_taken(vars->c))
-		exit_foreach(vars->e, put_exit, vars);
-	put_character(vars->w->window, vars->p, vars->w->next, vars->t);
-	switch_image(vars->w->screen, vars->w);
+	t_collec	*x;
+
+	x = head;
+	while (x != NULL)
+	{
+		if (x->state == 1)
+			return (0);
+		x = (t_collec *)x->next;
+	}
+	return (1);
 }
