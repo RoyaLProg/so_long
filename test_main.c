@@ -25,11 +25,11 @@ int	main(int ac, char **av)
 	player.dir[0] = 0;
 	player.dir[1] = 0;
 	player.state = 1;
-	window.window = mlx_new_window(screen, 900, 900, "test");
-	img.img = mlx_new_image(screen, 900, 900);
+	window.window = mlx_new_window(screen, 900, 400, "test");
+	img.img = mlx_new_image(screen, 900, 400);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
-	img2.img = mlx_new_image(screen, 900, 900);
+	img2.img = mlx_new_image(screen, 900, 400);
 	img2.addr = mlx_get_data_addr(img2.img, &img2.bits_per_pixel, &img2.line_length,
 			&img2.endian);
 	window.current = &img2;

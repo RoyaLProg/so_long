@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 09:56:04 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/13 04:43:06 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/13 07:37:45 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 int	render_next_frame(t_vars *vars)
 {
+	if (all_collect_taken(vars->c))
+		exit_foreach(vars->e, ft_on_exit, vars);
 	map_generation(vars->t->map, vars->t, vars->w->next);
 	collec_foreach(vars->c, take_collectible, vars);
 	collec_foreach(vars->c, put_collectible, vars);
