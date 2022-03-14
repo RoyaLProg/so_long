@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 07:58:11 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/12 07:40:43 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/14 10:43:21 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,34 @@ static int	is_there_requirements(char **map)
 	return (1);
 }
 
+static int	char_conform(char **map)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] != 'C'
+				&& map[i][j] != 'E'
+				&& map[i][j] != 'P'
+				&& map[i][j] != '0'
+				&& map[i][j] != '1'
+				&& map[i][j] != '\n'
+			)
+			{
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	map_verification(char **map, t_vars *game)
 {
 	int		fd;
@@ -84,6 +112,6 @@ int	map_verification(char **map, t_vars *game)
 	if (!is_there_requirements(map))
 		return (1);
 	game->w->height = i * 32;
-	game->w->width = ft_strlen(map[0]) * 32;
+	game->w->width = (ft_strlen(map[0]) - 1) * 32;
 	return (0);
 }
