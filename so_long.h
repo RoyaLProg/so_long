@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/13 07:38:28 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/15 07:00:26 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_vars{
 	t_player	*p;
 	t_collec	*c;
 	t_exit		*e;
+	int			count;
 }	t_vars;
 
 void		xpm_to_sprite(t_tileset *tileset);
@@ -111,5 +112,6 @@ int			all_collect_taken(t_collec *head);
 void		put_exit(t_exit *e, t_vars *v);
 void		exit_foreach(t_exit *head, void (*f)(), t_vars *param);
 void		ft_on_exit(t_exit *e, t_vars *v);
+void		put_count(t_vars *vars);
 
 #endif

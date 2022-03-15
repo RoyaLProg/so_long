@@ -25,6 +25,7 @@ int	main(int ac, char **av)
 	vars.w = &window;
 	vars.c = &c;
 	vars.e = &e;
+	vars.count = 6;
 	test.map = map_to_tab("maps/map1.ber");
 	if (map_verification(test.map, &vars))
 	{
