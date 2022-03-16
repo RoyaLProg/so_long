@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:31:53 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/10 05:08:10 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/16 07:36:14 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,16 @@ void	free_split(char **v)
 		i++;
 	}
 	free(v);
+}
+
+void	ft_clear(void)
+{
+	int	i;
+
+	i = 0;
+	while (i < 100)
+	{
+		puts("\e[1;1H\e[2J");
+		i++;
+	}
 }

@@ -25,7 +25,8 @@ int	main(int ac, char **av)
 	vars.w = &window;
 	vars.c = &c;
 	vars.e = &e;
-	vars.count = 6;
+	vars.count = 0;
+	refresh_count(&vars);
 	test.map = map_to_tab("maps/map1.ber");
 	if (map_verification(test.map, &vars))
 	{
@@ -35,8 +36,7 @@ int	main(int ac, char **av)
 	screen = mlx_init();
 	window.screen = screen;
 	player.animation = 0;
-	player.pos[0] = 5;
-	player.pos[1] = 3;
+	locate_player(test.map, &vars);
 	player.dir[0] = 0;
 	player.dir[1] = 0;
 	player.state = 1;

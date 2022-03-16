@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/15 07:00:26 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/16 07:28:38 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int			all_collect_taken(t_collec *head);
 void		put_exit(t_exit *e, t_vars *v);
 void		exit_foreach(t_exit *head, void (*f)(), t_vars *param);
 void		ft_on_exit(t_exit *e, t_vars *v);
-void		put_count(t_vars *vars);
+void		refresh_count(t_vars *vars);
+void		ft_clear(void);
 
 #endif

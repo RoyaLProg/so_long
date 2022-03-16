@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:14:36 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/12 08:39:42 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/16 07:34:35 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	move(t_player *p, t_vars *v, int x, int y)
 		p->state = 1;
 		return ;
 	}
+	v->count++;
+	refresh_count(v);
 	p->pos[0] += x;
 	p->pos[1] += y;
 	p->state = 1;
