@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count.c                                            :+:      :+:    :+:   */
+/*   safe_end.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/15 05:49:51 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/18 10:35:24 by ccambium         ###   ########.fr       */
+/*   Created: 2022/03/17 11:09:57 by ccambium          #+#    #+#             */
+/*   Updated: 2022/03/17 12:23:54 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <mlx.h>
 
-void	refresh_count(t_vars *vars)
+void	safe_end(t_vars	*v)
 {
-	ft_clear();
-	ft_printf("steps : %d", vars->count);
+	size_t	i;
+
+	while (v->t->colors[i])
+	{
+		free(v->t->colors[i][0]);
+		free(v->t->colors[i][1]);
+		free(v->t->colors[i][2]);
+		free(v->t->colors[i]);
+		i++;
+	}
+	free(v->t->colors[i]);
+	free(v->t->colors);
+	free_split(v->t->img);
+	free_split(v->t->map);
+	free_collec(v->c);
+	free_exit(v->e);
+	mlx_destroy_window(v->w->screen, v->w->window);
 }

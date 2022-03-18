@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 16:48:00 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/08 03:32:11 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/17 12:26:20 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	get_color_by_char(char ***colors, char c)
 			return (hex_to_int(colors[i][1]));
 		i++;
 	}
+	return (0);
 }
 
 void	put_sprite_to_img(char **sprite, int *coord, char ***colors, void *img)
@@ -76,7 +77,6 @@ char	**get_sprite(t_tileset *sprite, int x, int y)
 void	put_sprite(t_tileset *t, int *s_coord, int *coord, t_image *img)
 {
 	char	**sprite;
-	size_t	i;
 
 	sprite = get_sprite(t, s_coord[0], s_coord[1]);
 	put_sprite_to_img(sprite, coord, t->colors, img);

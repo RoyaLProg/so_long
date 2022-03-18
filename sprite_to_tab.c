@@ -60,7 +60,6 @@ char	**get_images(char **img, int fd)
 {
 	size_t	i;
 	char	*s;
-	char	*v;
 
 	s = get_next_line(fd);
 	if (ft_strncmp("/* pixels */\n", s, ft_strlen(s)) != 0)
@@ -68,19 +67,12 @@ char	**get_images(char **img, int fd)
 	free(s);
 	i = 0;
 	s = get_next_line(fd);
-	img = malloc(sizeof(char *) * (289 - 3 * 32));
+	img = malloc(sizeof(char *) * (3 * 33));
 	if (img == NULL)
 		return (img);
-	while (i < 288 - 3 * 32)
+	while (i < 3 * 32)
 	{
-		if (i / 32 < 3)
-			img[i] = ft_strtrim(s, ",\"\n");
-		else
-		{
-			v = ft_strtrim(s, ",\"\n");
-			img[i] = ft_substr(v, 0, 12 * 32 + 1);
-			free(v);
-		}
+		img[i] = ft_strtrim(s, ",\"\n");
 		i++;
 		free(s);
 		s = get_next_line(fd);

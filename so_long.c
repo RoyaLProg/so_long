@@ -6,26 +6,57 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 10:58:11 by ccambium          #+#    #+#             */
-/*   Updated: 2022/02/03 13:46:24 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/18 12:53:32 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <mlx.h>
 
-int	main(void)
+void	so_long(t_vars *v, char *map_path)
 {
-	void		*screen;
-	t_window	w;
-	t_image		image;
-	t_tileset	tileset;
+	if (map_verification(v->t->map, v, map_path))
+	{
+		if (v->t->map != NULL)
+			free_split(v->t->map);
+		free(v->c);
+		free(v->e);
+		return ;
+	}
+	v->w->screen = mlx_init();
+	v->w->window = mlx_new_window(v->w->screen, v->w->width,
+			v->w->height, "./so_long");
+	v->count = 0;
+	new_images(v);
+	xpm_to_sprite(v->t);
+	refresh_count(v);
+	locate_player(v->t->map, v);
+	locate_collec(v->c, v);
+	locate_exit(v->e, v);
+	event_handler(v);
+	mlx_loop_hook(v->w->screen, render_next_frame, v);
+	mlx_loop(v->w->screen);
+	safe_end(v);
+}
 
-	screen = mlx_init;
-	w.window = mlx_new_window(screen, w.width, w.height, "./so_long");
-	image.img = mlx_new_image(screen, w.width, w.height);
-	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel,
-			&image.line_length, &image.endian);
-	w.next = &image;
-	w.current = NULL;
-	xpm_to_sprite(&tileset);
+int	main(int ac, char **av)
+{
+	t_vars		v;
+	t_window	w;
+	t_tileset	t;
+	t_player	p;
+
+	if (ac != 2)
+	{
+		printf("Error\n no map given\n");
+		return (1);
+	}
+	v.p = &p;
+	v.t = &t;
+	v.w = &w;
+	v.c = (t_collec *)malloc(sizeof(t_collec));
+	v.e = (t_exit *)malloc(sizeof(t_exit));
+	t.path = "tileset/Beach Tileset.xpm";
+	t.map = map_to_tab(av[1]);
+	so_long(&v, av[1]);
 }

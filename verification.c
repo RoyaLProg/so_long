@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 07:58:11 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/15 07:12:47 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/18 12:54:41 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static int	is_up_down_wall(char *s)
 	while (s[i])
 	{
 		if (s[i] != '1' && s[i] != '\n')
+		{
+			ft_printf("Error\nmap not surronded by walls\n");
 			return (1);
+		}
 		i++;
 	}
 	return (0);
@@ -36,13 +39,16 @@ static int	is_map_rect(char **map)
 	while (map[i] != NULL)
 	{
 		if (len != ft_strlen(map[i]))
+		{
+			ft_printf("Error\nmap not rectangular\n");
 			return (0);
+		}
 		i++;
 	}
 	return (i);
 }
 
-static int	is_there_requirements(char **map)
+int	is_there_requirements(char **map)
 {
 	int		v[3];
 	size_t	i;
@@ -90,6 +96,8 @@ static int	char_conform(char **map)
 				&& map[i][j] != '\n'
 			)
 			{
+				ft_printf("Error \nmap contain illegal char :\
+					%c\n", map[i][j]);
 				return (0);
 			}
 			j++;
@@ -99,21 +107,25 @@ static int	char_conform(char **map)
 	return (1);
 }
 
-int	map_verification(char **map, t_vars *game)
+int	map_verification(char **map, t_vars *game, char *mappath)
 {
-	int		fd;
 	size_t	i;
 
+	if (map == NULL)
+	{
+		ft_printf("Error\n map either empty or inexisting\n");
+		return (1);
+	}
+	if (!is_dot_ber(mappath))
+		return (1);
 	i = is_map_rect(map);
 	if (!i)
 		return (1);
 	if (is_up_down_wall(map[0]) || is_up_down_wall(map[i - 1]))
 		return (1);
-	if (!is_there_requirements(map))
-		return (1);
 	if (!char_conform(map))
 		return (1);
 	game->w->height = i * 32;
 	game->w->width = (ft_strlen(map[0]) - 1) * 32;
-	return (0);
+	return (verification2(map, i));
 }

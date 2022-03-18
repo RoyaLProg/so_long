@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 07:27:01 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/13 07:38:19 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/17 10:12:30 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	exit_foreach(t_exit *head, void (*f)(), t_vars *param)
 	}
 }
 
-void ft_on_exit(t_exit *e, t_vars *v)
+void	ft_on_exit(t_exit *e, t_vars *v)
 {
 	if (v->p->pos[0] == e->pos[0]
 		&& v->p->pos[1] == e->pos[1])
