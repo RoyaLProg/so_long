@@ -1,5 +1,6 @@
 CC = gcc
 CFLAGS =  -Wall -Wextra -Werror -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+H_PATH = src
 SRCS = src/character.c\
 	src/collectible2.c\
 	src/collectible.c\
@@ -35,25 +36,53 @@ SRCS = src/character.c\
 
 NAME = so_long
 
+ifneq (,$(findstring xterm,${TERM}))
+	BLACK        := $(shell tput -Txterm setaf 0)
+	RED          := $(shell tput -Txterm setaf 1)
+	GREEN        := $(shell tput -Txterm setaf 2)
+	YELLOW       := $(shell tput -Txterm setaf 3)
+	LIGHTPURPLE  := $(shell tput -Txterm setaf 4)
+	PURPLE       := $(shell tput -Txterm setaf 5)
+	BLUE         := $(shell tput -Txterm setaf 6)
+	WHITE        := $(shell tput -Txterm setaf 7)
+	RESET := $(shell tput -Txterm sgr0)
+else
+	BLACK        := ""
+	RED          := ""
+	GREEN        := ""
+	YELLOW       := ""
+	LIGHTPURPLE  := ""
+	PURPLE       := ""
+	BLUE         := ""
+	WHITE        := ""
+	RESET        := ""
+endif
+
+TITLE = "\n $(BLUE)███████  ██████          ██       ██████  ███    ██  ██████\n"\
+		"$(BLUE)██      ██    ██         ██      ██    ██ ████   ██ ██       \n"\
+		"$(BLUE)███████ ██    ██         ██      ██    ██ ██ ██  ██ ██   ███ \n"\
+		"$(BLUE)     ██ ██    ██         ██      ██    ██ ██  ██ ██ ██    ██ \n"\
+		"$(BLUE)███████  ██████  ███████ ███████  ██████  ██   ████  ██████  \n"\
+        "\n\n $(PURPLE)ᐅ $(YELLOW)Making something like $(GREEN)$(NAME) $(YELLOW)or a shitty thing $(RED)(╯°□°)╯︵ ┻━┻ $(RESET)\n\n"                                                   
+
+.SILENT:
+
 all: $(NAME)
 
 fclean:
-	cd libftprintf && $(MAKE) fclean
-	cd mlx_linux && $(MAKE) clean
 	rm $(NAME)
 
 clean:
-	cd libftprintf && $(MAKE) clean
-	cd mlx_linux && $(MAKE) clean
+	rm $(NAME)
 
+title:clear
+	echo $(TITLE)
+
+clear:
+	clear
+
+re: fclean $(NAME)
 .PHONY:
 
-$(NAME): mlx printf
-	$(CC) $(SRCS) $(CFLAGS) -o $(NAME)
-
-mlx:
-	cd mlx_linux && $(MAKE)
-
-printf:
-	cd libftprintf && $(MAKE)
-
+$(NAME): title
+	$(CC) $(SRCS) $(CFLAGS) -o $(NAME) -I $(H_PATH)
