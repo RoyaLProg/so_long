@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/18 12:42:51 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:07:38 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "get_next_line/get_next_line.h"
-# include "libftprintf/ft_printf.h"
+# include "../get_next_line/get_next_line.h"
+# include "../libftprintf/ft_printf.h"
 
 typedef struct s_tileset{
 	char	***colors;

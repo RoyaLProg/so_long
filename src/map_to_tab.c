@@ -6,12 +6,11 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 18:55:25 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/17 12:27:23 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/18 21:09:00 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "get_next_line/get_next_line.h"
 
 static size_t	get_nb_lines(char *path)
 {

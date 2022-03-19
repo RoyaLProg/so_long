@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line/get_next_line.h"
 #include "so_long.h"
 
 static char	***get_colors2(char ***colors, int fd, int x)
