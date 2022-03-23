@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 18:55:25 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/18 21:09:00 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:37:51 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ char	**map_to_tab(char *path)
 	map = malloc(sizeof(char *) * (size + 1));
 	if (map == NULL)
 		return (NULL);
+	if (map[1] == NULL)
+	{
+		free_split(map[0]);
+		return (NULL);
+	}
 	while (i < size + 1)
 	{
 		map[i] = get_next_line(fd);
