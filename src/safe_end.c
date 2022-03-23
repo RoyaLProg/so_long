@@ -6,12 +6,11 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 11:09:57 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/23 14:56:39 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:09:54 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
 void	safe_end(t_vars	*v)
 {

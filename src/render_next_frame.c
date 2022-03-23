@@ -6,12 +6,11 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 09:56:04 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/18 12:23:22 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:09:51 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
 int	render_next_frame(t_vars *vars)
 {

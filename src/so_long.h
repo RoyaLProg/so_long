@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/18 21:07:38 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:10:46 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include "../get_next_line/get_next_line.h"
 # include "../libftprintf/ft_printf.h"
+# include "../mlx_linux/mlx.h"
 
 typedef struct s_tileset{
 	char	***colors;
@@ -95,6 +96,7 @@ void		locate_player(char **map, t_vars *vars);
 void		locate_next_collectible(t_collec *c, t_vars *v);
 int			will_collide_wall(int *pos, int *dir, char **map);
 char		*ft_itoa(int n);
+int			ft_atoi(const char *s);
 int			is_near(int	*pos1, int *pos2);
 int			is_on_collectible(t_player *p, t_collec *c);
 void		put_collectible(t_collec *c, t_vars *v);

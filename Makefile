@@ -1,5 +1,5 @@
-CC = clang
-CFLAGS =  -Wall -Wextra -Werror -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+CC = gcc
+CFLAGS =  -Wall -Wextra -Werror -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
 H_PATH = src
 SRCS = src/character.c\
 	src/collectible2.c\
@@ -9,6 +9,7 @@ SRCS = src/character.c\
 	src/event_handler.c\
 	src/exit2.c\
 	src/exit.c\
+	src/ft_atoi.c\
 	src/ft_isdigit.c\
 	src/ft_split.c\
 	src/ft_strlcpy.c\
@@ -32,7 +33,8 @@ SRCS = src/character.c\
 	src/verification.c\
 	get_next_line/get_next_line.c\
 	get_next_line/get_next_line_utils.c\
-	libftprintf/libftprintf.a
+	libftprintf/libftprintf.a\
+	mlx_linux/mlx_linux.a
 
 NAME = so_long
 
@@ -85,4 +87,4 @@ re: fclean $(NAME)
 .PHONY:
 
 $(NAME): title
-	$(CC) $(SRCS) $(CFLAGS) -I $(H_PATH)
+	$(CC) $(SRCS) $(CFLAGS)

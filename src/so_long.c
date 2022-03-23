@@ -6,12 +6,11 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 10:58:11 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/18 12:53:32 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:09:56 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
 void	so_long(t_vars *v, char *map_path)
 {
