@@ -1,4 +1,4 @@
-CC = gcc
+CC = clang
 CFLAGS =  -Wall -Wextra -Werror -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 H_PATH = src
 SRCS = src/character.c\
@@ -85,4 +85,4 @@ re: fclean $(NAME)
 .PHONY:
 
 $(NAME): title
-	$(CC) $(SRCS) $(CFLAGS) -o $(NAME) -I $(H_PATH)
+	$(CC) $(SRCS) $(CFLAGS) -I $(H_PATH)
