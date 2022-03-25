@@ -6,37 +6,11 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 07:27:01 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/17 10:12:30 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:59:32 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void	put_exit_to_img(char **sprite, int *coord,
-								char ***colors, void *img)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < 32)
-	{
-		j = 0;
-		while (j < 32)
-		{
-			if (sprite[i][j] == '8')
-			{
-				j++;
-				continue ;
-			}
-			ft_pixel_put(img, (coord[0] * 32) + j, (coord[1] * 32) + i,
-				get_color_by_char(colors, sprite[i][j]));
-			j++;
-		}
-		i++;
-	}
-	free_split(sprite);
-}
 
 int	count_exit(char **map)
 {
@@ -62,8 +36,8 @@ int	count_exit(char **map)
 
 void	put_exit(t_exit *e, t_vars *v)
 {
-	put_exit_to_img(get_sprite(v->t, 0, 0),
-		e->pos, v->t->colors, v->w->next);
+	mlx_put_image_to_window(v->w->screen, v->w->window, v->t->exit,
+		e->pos[0] * 32, e->pos[1] * 32);
 }
 
 void	exit_foreach(t_exit *head, void (*f)(), t_vars *param)

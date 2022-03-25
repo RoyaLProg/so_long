@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS =  -Wall -Wextra -Werror -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+CFLAGS =  -Wall -Wextra -Werror -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -g -fsanitize=address
 H_PATH = src
 SRCS = src/character.c\
 	src/collectible2.c\
@@ -16,17 +16,14 @@ SRCS = src/character.c\
 	src/ft_strtrim.c\
 	src/ft_substr.c\
 	src/hex_to_int.c\
-	src/image.c\
 	src/interactions.c\
 	src/map_generation.c\
 	src/map_to_tab.c\
-	src/put_sprite.c\
 	src/render_next_frame.c\
 	src/safe_end.c\
 	src/so_long.c\
 	src/so_long.h\
-	src/sprite_to_tab.c\
-	src/switch_image.c\
+	src/tileset.c\
 	src/tools.c\
 	src/verification2.c\
 	src/verification.c\

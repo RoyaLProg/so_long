@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/18 21:07:38 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:01:33 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@
 # include <fcntl.h>
 # include "../get_next_line/get_next_line.h"
 # include "../libftprintf/ft_printf.h"
+# include "../mlx_linux/mlx.h"
 
 typedef struct s_tileset{
-	char	***colors;
-	char	**img;
+	void	*water;
+	void	*character;
+	void	*sand;
+	void	*chest[3];
+	void	*exit;
 	char	**map;
-	char	*path;
+	int		tile_height;
+	int		tile_width;
 }	t_tileset;
 
 typedef struct s_image{
@@ -68,7 +73,6 @@ typedef struct s_vars{
 	int			count;
 }	t_vars;
 
-void		xpm_to_sprite(t_tileset *tileset);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char const *s, char c);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
@@ -77,17 +81,11 @@ int			hex_to_int(char *hex);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 void		free_split(char **v);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
-void		put_sprite(t_tileset *t, int *s_coord, int *coord, t_image *img);
-void		put_sprite_to_img(char **sprite, int *coord,
-				char ***colors, void *img);
-void		switch_image(void *screen, t_window *w);
 void		event_handler(t_vars *vars);
 void		map_generation(t_vars *v);
 char		**map_to_tab(char *path);
-void		put_character(t_player *p, t_image *img, t_tileset *t);
+void		put_character(t_vars *v);
 char		**get_sprite(t_tileset *sprite, int x, int y);
-int			get_color_by_char(char ***colors, char c);
-void		ft_pixel_put(t_image *data, int x, int y, int color);
 int			render_next_frame(t_vars *vars);
 void		move(t_player *p, t_vars *vars, int x, int y);
 int			map_verification(char **map, t_vars *vars, char *mappath);
@@ -111,11 +109,12 @@ void		locate_collec(t_collec *head, t_vars *v);
 int			count_exit(char **map);
 void		locate_exit(t_exit *head, t_vars *v);
 void		safe_end(t_vars	*v);
-void		new_images(t_vars *vars);
 void		free_exit(t_exit *head);
 void		free_collec(t_collec *head);
 int			is_there_requirements(char **map);
 int			verification2(char **map, size_t i);
 int			is_dot_ber(char *mappath);
+t_tileset	*tileset_load(t_vars *v);
+void		tileset_safeend(t_vars *v);
 
 #endif

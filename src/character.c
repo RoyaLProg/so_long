@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:14:36 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/18 10:20:54 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:22:54 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	locate_player(char **map, t_vars *vars)
 			{
 				vars->p->pos[0] = j;
 				vars->p->pos[1] = i;
-				map[i][j] = '0';
 				return ;
 			}
 			j++;
@@ -37,35 +36,10 @@ void	locate_player(char **map, t_vars *vars)
 	}
 }
 
-void	put_chara_to_img(char **sprite, int *coord, char ***colors, void *img)
+void	put_character(t_vars *v)
 {
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < 32)
-	{
-		j = 0;
-		while (j < 32)
-		{
-			if (sprite[i][j] == '8')
-			{
-				j++;
-				continue ;
-			}
-			ft_pixel_put(img, (coord[0] * 32) + j, (coord[1] * 32) + i,
-				get_color_by_char(colors, sprite[i][j]));
-			j++;
-		}
-		i++;
-	}
-	free_split(sprite);
-}
-
-void	put_character(t_player *p, t_image *img, t_tileset *t)
-{
-	put_chara_to_img(get_sprite(t, 14, 0),
-		p->pos, t->colors, img);
+	mlx_put_image_to_window(v->w->screen, v->w->window, v->t->character,
+		v->p->pos[0] * 32, v->p->pos[1] * 32);
 }
 
 void	move(t_player *p, t_vars *v, int x, int y)
