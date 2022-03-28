@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:14:36 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/25 18:22:54 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/26 19:11:44 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,28 @@ void	locate_player(char **map, t_vars *vars)
 	}
 }
 
+int	player_on_collect(t_vars *v)
+{
+	t_collec	*x;
+
+	x = v->c;
+	while (x)
+	{
+		if (v->p->pos[0] == x->pos[0] && v->p->pos[1] == x->pos[1])
+			return (1);
+		x = x->next;
+	}
+	return (0);
+}
+
 void	put_character(t_vars *v)
 {
-	mlx_put_image_to_window(v->w->screen, v->w->window, v->t->character,
-		v->p->pos[0] * 32, v->p->pos[1] * 32);
+	if (player_on_collect(v))
+		mlx_put_image_to_window(v->w->screen, v->w->window, v->t->character[1],
+			v->p->pos[0] * 32, v->p->pos[1] * 32);
+	else
+		mlx_put_image_to_window(v->w->screen, v->w->window, v->t->character[0],
+			v->p->pos[0] * 32, v->p->pos[1] * 32);
 }
 
 void	move(t_player *p, t_vars *v, int x, int y)

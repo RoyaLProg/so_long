@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:31:12 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/25 16:59:50 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/26 19:29:19 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	count_collec(char **map)
 
 void	put_collectible(t_collec *c, t_vars *v)
 {
-	if (is_near(v->c->pos, c->pos) || is_on_collectible(v->p, c))
+	if (is_near(v->p->pos, c->pos) || is_on_collectible(v->p, c))
 	{
 		if (c->state)
 			mlx_put_image_to_window(v->w->screen, v->w->window, v->t->chest[2],

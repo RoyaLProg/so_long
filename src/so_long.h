@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:24:17 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/25 18:01:33 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/26 18:53:38 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef struct s_tileset{
 	void	*water;
-	void	*character;
+	void	*character[2];
 	void	*sand;
 	void	*chest[3];
 	void	*exit;

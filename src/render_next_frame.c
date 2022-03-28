@@ -6,7 +6,7 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 09:56:04 by ccambium          #+#    #+#             */
-/*   Updated: 2022/03/25 17:29:40 by ccambium         ###   ########.fr       */
+/*   Updated: 2022/03/26 19:15:49 by ccambium         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int	render_next_frame(t_vars *vars)
 {
+	mlx_clear_window(vars->w->screen, vars->w->window);
 	if (all_collect_taken(vars->c))
 		exit_foreach(vars->e, ft_on_exit, vars);
 	map_generation(vars);
