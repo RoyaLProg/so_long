@@ -1,5 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/03/26 19:32:36 by ccambium          #+#    #+#              #
+#    Updated: 2022/03/26 19:32:37 by ccambium         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
+<<<<<<< HEAD
 CFLAGS =  -Wall -Wextra -Werror -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
+=======
+CFLAGS =  -Wall -Wextra -Werror -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -g -fsanitize=address
+>>>>>>> 9649069b768d375e9289692e273b5291db149d71
 H_PATH = src
 SRCS = src/character.c\
 	src/collectible2.c\
@@ -17,17 +33,14 @@ SRCS = src/character.c\
 	src/ft_strtrim.c\
 	src/ft_substr.c\
 	src/hex_to_int.c\
-	src/image.c\
 	src/interactions.c\
 	src/map_generation.c\
 	src/map_to_tab.c\
-	src/put_sprite.c\
 	src/render_next_frame.c\
 	src/safe_end.c\
 	src/so_long.c\
 	src/so_long.h\
-	src/sprite_to_tab.c\
-	src/switch_image.c\
+	src/tileset.c\
 	src/tools.c\
 	src/verification2.c\
 	src/verification.c\

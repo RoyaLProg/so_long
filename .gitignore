@@ -1,3 +1,10 @@
 
+<<<<<<< HEAD
 src/so_long.h.gch
 so_long
+=======
+src/a.out
+src/test_main.c
+so_long
+void.ber
+>>>>>>> 9649069b768d375e9289692e273b5291db149d71

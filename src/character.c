@@ -6,7 +6,11 @@
 /*   By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:14:36 by ccambium          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/03/23 16:09:32 by ccambium         ###   ########.fr       */
+=======
+/*   Updated: 2022/03/26 19:11:44 by ccambium         ###   ########.fr       */
+>>>>>>> 9649069b768d375e9289692e273b5291db149d71
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +31,6 @@ void	locate_player(char **map, t_vars *vars)
 			{
 				vars->p->pos[0] = j;
 				vars->p->pos[1] = i;
-				map[i][j] = '0';
 				return ;
 			}
 			j++;
@@ -36,35 +39,28 @@ void	locate_player(char **map, t_vars *vars)
 	}
 }
 
-void	put_chara_to_img(char **sprite, int *coord, char ***colors, void *img)
+int	player_on_collect(t_vars *v)
 {
-	int		i;
-	int		j;
+	t_collec	*x;
 
-	i = 0;
-	while (i < 32)
+	x = v->c;
+	while (x)
 	{
-		j = 0;
-		while (j < 32)
-		{
-			if (sprite[i][j] == '8')
-			{
-				j++;
-				continue ;
-			}
-			ft_pixel_put(img, (coord[0] * 32) + j, (coord[1] * 32) + i,
-				get_color_by_char(colors, sprite[i][j]));
-			j++;
-		}
-		i++;
+		if (v->p->pos[0] == x->pos[0] && v->p->pos[1] == x->pos[1])
+			return (1);
+		x = x->next;
 	}
-	free_split(sprite);
+	return (0);
 }
 
-void	put_character(t_player *p, t_image *img, t_tileset *t)
+void	put_character(t_vars *v)
 {
-	put_chara_to_img(get_sprite(t, 14, 0),
-		p->pos, t->colors, img);
+	if (player_on_collect(v))
+		mlx_put_image_to_window(v->w->screen, v->w->window, v->t->character[1],
+			v->p->pos[0] * 32, v->p->pos[1] * 32);
+	else
+		mlx_put_image_to_window(v->w->screen, v->w->window, v->t->character[0],
+			v->p->pos[0] * 32, v->p->pos[1] * 32);
 }
 
 void	move(t_player *p, t_vars *v, int x, int y)
