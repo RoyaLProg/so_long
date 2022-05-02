@@ -6,16 +6,12 @@
 #    By: ccambium <ccambium@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 19:32:36 by ccambium          #+#    #+#              #
-#    Updated: 2022/03/26 19:32:37 by ccambium         ###   ########.fr        #
+#    Updated: 2022/05/02 14:43:05 by ccambium         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-<<<<<<< HEAD
-CFLAGS =  -Wall -Wextra -Werror -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
-=======
 CFLAGS =  -Wall -Wextra -Werror -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -g -fsanitize=address
->>>>>>> 9649069b768d375e9289692e273b5291db149d71
 H_PATH = src
 SRCS = src/character.c\
 	src/collectible2.c\
